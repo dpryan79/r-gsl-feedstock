@@ -1,5 +1,4 @@
 {% set version = '1.9-10.3' %}
-
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,35 +9,43 @@ package:
 source:
   fn: gsl_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/gsl_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/gsl/gsl_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/gsl_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/gsl/gsl_{{ version }}.tar.gz
   sha256: 4f9fc4dc8170ba93c9b45940448da089ce9ad4c45ba39c8f264e1505a3e03a02
 
 build:
   merge_build_host: True  # [win]
-  number: 1
+  number: 2
   skip: true  # [win32]
-
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
-    - posix                # [win]
-    - {{ compiler('c') }}        # [unix]
-    - {{ compiler('m2w64_c') }}  # [win]
+    - {{ compiler('c') }}        # [not win]
+    - {{native}}toolchain        # [win]
+    - {{posix}}filesystem        # [win]
+    - {{posix}}sed               # [win]
+    - {{posix}}grep              # [win]
+    - {{posix}}autoconf
+    - {{posix}}automake          # [not win]
+    - {{posix}}automake-wrapper  # [win]
+    - {{posix}}pkg-config
+    - {{posix}}make
+    - {{posix}}coreutils         # [win]
+    - {{posix}}zip               # [win]
   host:
     - r-base
     - {{native}}gsl
-
   run:
     - r-base
     - {{native}}gsl
+    - {{native}}gcc-libs         # [win]
 
 test:
   commands:
-    - $R -e "library('gsl')"  # [not win]
+    - $R -e "library('gsl')"           # [not win]
     - "\"%R%\" -e \"library('gsl')\""  # [win]
 
 about:
@@ -48,10 +55,15 @@ about:
     Gnu Scientific Library (http://www.gnu.org/software/gsl/).  See gsl-package.Rd for
     details of  overall package organization, and Misc.Rd for some functions that are
     widely used in the package, and some tips on installation.'
-
   license_family: GPL3
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'  # [unix]
+  license_file: '{{ environ["PREFIX"] }}\R\share\licenses\GPL-3'  # [win]
 
 extra:
   recipe-maintainers:
     - johanneskoester
     - bgruening
+    - daler
+    - jdblischak
+    - cbrueffer
+    - dbast
