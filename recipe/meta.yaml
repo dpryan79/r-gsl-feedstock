@@ -15,7 +15,7 @@ source:
 
 build:
   merge_build_host: True  # [win]
-  number: 2
+  number: 3
   skip: true  # [win32]
   rpaths:
     - lib/R/lib/
@@ -37,11 +37,13 @@ requirements:
     - {{posix}}zip               # [win]
   host:
     - r-base
-    - {{native}}gsl
+    - {{native}}gsl             # [win]
+    - gsl                       # [not win]
   run:
     - r-base
-    - {{native}}gsl
-    - {{native}}gcc-libs         # [win]
+    - {{native}}gsl             # [win]
+    - gsl                       # [not win]
+    - {{native}}gcc-libs        # [win]
 
 test:
   commands:
