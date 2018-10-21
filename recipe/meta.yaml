@@ -37,11 +37,13 @@ requirements:
     - {{posix}}zip               # [win]
   host:
     - r-base
-    - gsl
+    - {{native}}gsl             # [win]
+    - gsl                       # [not win]
   run:
     - r-base
-    - gsl
-    - {{native}}gcc-libs         # [win]
+    - {{native}}gsl             # [win]
+    - gsl                       # [not win]
+    - {{native}}gcc-libs        # [win]
 
 test:
   commands:
