@@ -39,11 +39,11 @@ requirements:
   host:
     - r-base
     - {{native}}gsl             # [win]
-    - gsl 2.4                      # [not win]
+    - gsl                       # [not win]
   run:
     - r-base
     - {{native}}gsl             # [win]
-    - gsl 2.4                      # [not win]
+    - gsl                       # [not win]
     - {{native}}gcc-libs        # [win]
 
 test:
