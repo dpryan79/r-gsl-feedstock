@@ -10,8 +10,10 @@ channel_targets:
 - conda-forge gcc7
 cran_mirror:
 - https://cran.r-project.org
+cxx_compiler:
+- clangxx
 gsl:
-- '2.2'
+- '2.4'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 macos_min_version:
@@ -27,6 +29,7 @@ target_platform:
 - osx-64
 zip_keys:
 - - c_compiler
+  - cxx_compiler
   - channel_sources
   - channel_targets
   - build_number_decrement
