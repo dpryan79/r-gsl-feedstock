@@ -15,7 +15,7 @@ source:
 
 build:
   merge_build_host: True  # [win]
-  number: 3
+  number: 1003
   skip: true  # [win32]
   rpaths:
     - lib/R/lib/
@@ -24,6 +24,7 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}        # [not win]
+    - {{ compiler('cxx') }}        # [not win]
     - {{native}}toolchain        # [win]
     - {{posix}}filesystem        # [win]
     - {{posix}}sed               # [win]
@@ -58,14 +59,8 @@ about:
     details of  overall package organization, and Misc.Rd for some functions that are
     widely used in the package, and some tips on installation.'
   license_family: GPL3
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'  # [unix]
-  license_file: '{{ environ["PREFIX"] }}\R\share\licenses\GPL-3'  # [win]
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'
 
 extra:
   recipe-maintainers:
-    - johanneskoester
-    - bgruening
-    - daler
-    - jdblischak
-    - cbrueffer
-    - dbast
+    - conda-forge/r
