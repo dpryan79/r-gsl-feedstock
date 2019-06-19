@@ -1,13 +1,13 @@
 About r-gsl
 ===========
 
-Home: https://CRAN.R-project.org/package=gsl
+Home: https://github.com/RobinHankin/gsl.git
 
-Package license: GPL (>= 2)
+Package license: GPL-3
 
 Feedstock license: BSD 3-Clause
 
-Summary:  An R wrapper for the special functions and quasi random number generators of the Gnu Scientific Library (http://www.gnu.org/software/gsl/).  See gsl-package.Rd for details of  overall package organization, and Misc.Rd for some functions that are widely used in the package, and some tips on installation.
+Summary:  An R wrapper for some of the functionality of the Gnu Scientific Library.
 
 
 

@@ -8,10 +8,6 @@ channel_targets:
 - conda-forge main
 cran_mirror:
 - https://cran.r-project.org
-cxx_compiler:
-- gxx
-cxx_compiler_version:
-- '7'
 docker_image:
 - condaforge/linux-anvil-comp7
 gsl:
