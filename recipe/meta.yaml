@@ -14,7 +14,7 @@ source:
 
 build:
   merge_build_host: True  # [win]
-  number: 3
+  number: 4
   rpaths:
     - lib/R/lib/
     - lib/
@@ -37,6 +37,7 @@ requirements:
     - r-base
     - {{ native }}gsl             # [win]
     - gsl                       # [not win]
+    - libblas
   run:
     - r-base
     - {{ native }}gsl             # [win]
